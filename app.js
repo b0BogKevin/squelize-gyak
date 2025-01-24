@@ -81,22 +81,23 @@ Student.sync()
            }
         }
     )
-    .then(data=>
-    {
-		console.log(data);
-    }
-    )
+    .then((data) => {
+		data.forEach((element) => {
+      console.log(element.toJSON())
+    })
+	})
     Student.findAll(
         {
             attributes: [
                 [sequelize.fn("COUNT", sequelize.col("name")), "num_students"],
+                "school_year"
             ],
             group: "school_year",
         }
-    ).then(data=>
-        {
-            console.log(data);
-        }
-        )
+    ).then((data) => {
+		data.forEach((element) => {
+      console.log(element.toJSON())
+    })
+	})
 
 })
